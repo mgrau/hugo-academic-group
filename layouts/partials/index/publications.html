@@ -1,22 +1,23 @@
-{{ $pubs_len := len (where .Site.RegularPages "Type" "publication") }}
+{{ $pubs_len := len (where .Site.RegularPages "Type" "publications") }}
 {{ if gt $pubs_len 0 }}
 <section id="publications" class="home-section">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-4 section-heading">
-                <h1><a href="{{.Site.BaseURL}}/publication/{{if .Site.Params.uglyURLs}}index.html{{end}}">{{ with .Site.Params.publications.title }}{{ . | markdownify }}{{ end }}</a></h1>
+                <h1><a href="{{.Site.BaseURL}}/publications/{{if .Site.Params.uglyURLs}}index.html{{end}}">{{ with
+                        .Site.Params.publications.title }}{{ . | markdownify }}{{ end }}</a></h1>
                 {{ with .Site.Params.publications.subtitle }}<p>{{ . | markdownify }}</p>{{ end }}
             </div>
             <div class="col-xs-12 col-md-8">
-                {{ range first .Site.Params.publications.count (where .Site.RegularPages "Type" "publication") }}
-                    {{ partial "publication_li_detailed" . }}
+                {{ range first .Site.Params.publications.count (where .Site.RegularPages "Type" "publications") }}
+                {{ partial "publication_li_detailed" . }}
                 {{ end }}
             </div>
         </div>
         <div>
             {{ if gt $pubs_len .Site.Params.publications.count }}
             <p class="view-all">
-                <a href="{{ .Site.BaseURL }}/publication/{{if .Site.Params.uglyURLs}}index.html{{end}}">
+                <a href="{{ .Site.BaseURL }}/publications/{{if .Site.Params.uglyURLs}}index.html{{end}}">
                     {{ with .Site.Params.publications.str_all }}{{ . | markdownify }}{{ end }}
                     <i class="fa fa-angle-double-right"></i>
                 </a>
