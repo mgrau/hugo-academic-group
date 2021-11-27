@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-sm-12">
                 <div class="pub-authors" itemprop="author">
@@ -23,16 +23,22 @@
             </div>
         </div>
 
+        {{ with .Resources.ByType "image" }}
+        {{ range . }}
+        <img src="{{ . }}" class="pub-banner" itemprop="image" height="10">
+        {{end}}
+        {{end}}
+
         {{ if .Params.image }}
         <img src="{{ $.Site.BaseURL }}img/{{ .Params.image }}" class="pub-banner" itemprop="image">
         {{end}}
-        
+
         <div class="row">
             <div class="col-sm-12">
                 <h3>Abstract</h3>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-sm-12">
                 <p class="pub-abstract" itemprop="text">{{ .Params.abstract | markdownify }}</p>
@@ -47,7 +53,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="visible-xs space-below"></div>
 
         {{ with .Params.award }}
@@ -69,7 +75,7 @@
                     <div class="col-xs-12 col-sm-3 pub-row-heading">Date</div>
                     <div class="col-xs-12 col-sm-9" itemprop="datePublished">
                         {{ if .Params.to_be_published }}
-                            To be published in
+                        To be published in
                         {{ end }}
                         {{ .Date.Format "January, 2006" }}
                     </div>
